@@ -3,21 +3,75 @@
 
     <head>
     
-        <title>Assignment 3</title>
-
         <meta charset="utf-8" />
-        
-        <script type='text/javascript'>
+        <link rel="stylesheet" href="vendor/bootstrap-css/bootstrap-reboot.min.css" />
+        <link rel="stylesheet" href="vendor/bootstrap-css/bootstrap.min.css" />
 
-        </script>
+        <title>Assignment 3</title>
 
     </head>
 
     <body>
 
-        <table>
+        <main style="height: 100vh;" class="container-fluid bg-dark">
+
+            <h1 class="display-1 text-light text-center">Automobiles</h1>
+
+            <div id="table-wrapper"></div>
+
+        </main>
+
+        <script type='text/javascript'>
+        
+            var request = new XMLHttpRequest();
+
+            request.open("GET", "auto.xml", true);
+            request.send();
             
-        </table>
+            request.onreadystatechange = function() {
+            
+                if (this.readyState == 4 && this.status == 200) {
+                    myFunction(this);
+                }
+            
+            };
+
+
+            function myFunction() {
+
+                var xmlDoc = request.responseXML;
+                var automobiles, makes, models, years, kms, prices, table, i;
+                
+                table = "<table class='table table-dark'><thead><tr><th scope='col'>#</th><th scope='col'>Make</th><th scope='col'>Model</th><th scope='col'>Year</th><th scope='col'>KM</th><th scope='col'>Price</th></tr></thead><tbody>"; 
+                
+                automobiles = xmlDoc.getElementsByTagName("automobile");
+                makes = xmlDoc.getElementsByTagName("make");
+                models = xmlDoc.getElementsByTagName("model");
+                years = xmlDoc.getElementsByTagName("year");
+                kms = xmlDoc.getElementsByTagName("km");
+                prices = xmlDoc.getElementsByTagName("price");
+
+                for (i = 0; i < automobiles.length; i++){
+
+                    table += "<tr>"
+                    
+                    table += "<th scope='row'>" + (i + 1) + "</th>";
+                    table += "<td>" + makes[i].childNodes[0].nodeValue + "</td>";
+                    table += "<td>" + models[i].childNodes[0].nodeValue + "</td>";
+                    table += "<td>" + years[i].childNodes[0].nodeValue + "</td>";
+                    table += "<td>" + kms[i].childNodes[0].nodeValue + "</td>";
+                    table += "<td>" + prices[i].childNodes[0].nodeValue + "</td>";
+
+                    table += "</tr>"
+
+                }    
+
+                table += "</tbody></table>"
+                document.getElementById("table-wrapper").innerHTML = table;
+
+            }
+        
+        </script>
  
     </body>
 
