@@ -1,0 +1,89 @@
+menu {
+
+    margin-left: 100px;
+
+}
+
+restaurant-title {
+    
+    display: block;
+    font-weight: bold;
+    font-size: 300%;
+    margin-bottom: 50px;
+
+}
+
+title {
+
+    display: block;
+    text-decoration: underline;
+
+}
+
+section-title {
+
+    display: block;
+    font-style: oblique;
+    font-weight: bold;
+    font-size: large;
+    margin-bottom: 15px;
+
+}
+
+sushi-submenu, salad-submenu {
+
+    display: block;
+    margin-bottom: 25px;
+
+}
+
+item {
+
+    display: block;
+    margin-bottom: 10px;
+    
+
+}
+
+sushi-submenu item {
+
+    background-color: beige;
+
+}
+
+salad-submenu item {
+
+    background-color: hsl(147, 50%, 90%);
+
+}
+
+subsection {
+
+    display: block;
+
+}
+
+subsection-title {
+
+    display: block;
+    font-size: small;
+
+}
+
+subitem {
+
+    font-size: small;
+    display: list-item;
+    list-style: square;
+    padding-left: 20px;
+    margin-left: 20px;
+
+}
+
+price {
+
+    font-weight: bold;
+    font-size: small;
+    color: red;
+
+}

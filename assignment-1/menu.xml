@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-stylesheet type="text/css" href="style.css" ?>
+
+<menu>
+
+    <restaurant-title>JOEY Eaton Centre Menu</restaurant-title>
+
+    <sushi-submenu>
+
+        <section-title>Sushi</section-title>
+
+        <item>
+            <title>Sushi Cone</title>
+            <subsection>
+                <subsection-title>Ingredients</subsection-title>
+                <subitem>Tempura Prawn</subitem>
+                <subitem>Avocado</subitem>
+                <subitem>Spicy Mayo</subitem>
+                <subitem>Tobiko</subitem>
+            </subsection>
+            <price>&#36;5.50</price>
+        </item>
+
+        <item>
+            <title>Tuna &amp; Avocado Roll</title>
+            <subsection>
+                <subsection-title>Ingredients</subsection-title>
+                <subitem>Chili Mayo</subitem>
+                <subitem>Micro Cilantro</subitem>
+                <subitem>Tempura Crunch</subitem>
+                <subitem>Teriyaki Glaze</subitem>
+            </subsection>
+            <price>&#36;17.25</price>
+        </item>
+
+        <item>
+            <title>Seared Salmon Sushi</title>
+            <subsection>
+                <subsection-title>Ingredients</subsection-title>
+                <subitem>Fire Torched Salmon</subitem>
+                <subitem>Umami Sauce</subitem>
+                <subitem>Shaved Serrano Peppers</subitem>
+            </subsection>
+            <price>&#36;17.25</price>
+        </item>
+
+        <item>
+            <title>Japanese Salad &amp; Seared Salmon Sushi</title>
+            <subsection>
+                <subsection-title>Ingredients</subsection-title>
+                <subitem>Julienne Vegetables</subitem>
+                <subitem>Peanut Miso Ginger Dressing</subitem>
+                <subitem>Seared Salmon Sushi</subitem>
+            </subsection>
+            <price>&#36;20.50</price>
+        </item>
+
+        <item />
+
+    </sushi-submenu>
+
+    <salad-submenu>
+
+        <section-title>Salads</section-title>
+
+        <item>
+            <title>Katsu Chicken Peanut Salad</title>
+            <subsection>
+                <subsection-title>Ingredients</subsection-title>
+                <subitem>Crispy Chicken Breast</subitem>
+                <subitem>Julienne Vegetables</subitem>
+                <subitem>Arugula</subitem>
+                <subitem>Miso Ginger Dressing</subitem>
+            </subsection>
+            <price>&#36;21.50</price>
+        </item>
+
+        <item>
+            <title>Farmers Market Chicken</title>
+            <subsection>
+                <subsection-title>Ingredients</subsection-title>
+                <subitem>Grilled Chicken Breast</subitem>
+                <subitem>Fresh Corn</subitem>
+                <subitem>Emerald Kale</subitem>
+                <subitem>Hass Avocado</subitem>
+                <subitem>Toasted Almonds</subitem>
+                <subitem>Aged White Cheddar</subitem>
+            </subsection>
+            <price>&#36;21.50</price>
+        </item>
+
+        <item>
+            <title>Yellowfin Tuna</title>
+            <subsection>
+                <subsection-title>Ingredients</subsection-title>
+                <subitem>Seared Rare</subitem>
+                <subitem>Mango</subitem>
+                <subitem>Peanuts</subitem>
+                <subitem>Avocado</subitem>
+                <subitem>Crispy Noodles</subitem>
+                <subitem>Cilantro Ginger Dressing</subitem>
+            </subsection>
+            <price>&#36;23.00</price>
+        </item>
+
+        <item>
+            <title>The New Cobb</title>
+            <subsection>
+                <subsection-title>Ingredients</subsection-title>
+                <subitem>Romaine &amp; Kale</subitem>
+                <subitem>Double Smoked Bacon</subitem>
+                <subitem>Hard-Boiled Egg</subitem>
+                <subitem>Grilled Chicken Breast</subitem>
+                <subitem>Grana Padano Dressing</subitem>
+            </subsection>
+            <price>&#36;21.00</price>
+        </item>
+
+        <item />
+
+    </salad-submenu>
+
+</menu>

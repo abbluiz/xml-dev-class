@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+    
+        <title>Assignment 2</title>
+
+        <meta charset="utf-8" />
+        
+        <script type='text/javascript'>
+
+            function getRandomInt(max) {
+                return Math.floor(Math.random() * Math.floor(max));
+            }
+
+            var randomNumber = getRandomInt(50) + 1;
+            var triesLeft = 3;
+            var winner = false;
+
+            function myButton() {
+
+            var resultParagraph = document.getElementById("result");
+            var triesParagraph = document.getElementById("tries");
+
+            while(resultParagraph.firstChild) {
+                resultParagraph.removeChild(resultParagraph.firstChild);
+            }
+
+            var getText = document.getElementById("myText").value;
+
+                if (isNaN(getText) || getText === "") {
+
+                        var text = document.createTextNode("This is not a number!");
+                        resultParagraph.appendChild(text);
+
+                } else {
+
+                    var userNumber = parseInt(getText);
+
+                    if (triesLeft !== 0 && winner === false) {
+
+                        if (userNumber > 50) {
+
+                            var text = document.createTextNode("Your number is way too high! ");
+                            resultParagraph.appendChild(text);
+
+                        } else if (userNumber < 1) {
+
+                            var text = document.createTextNode("Your number is way too low! ");
+                            resultParagraph.appendChild(text);
+                            
+                        } else if (userNumber == randomNumber) {
+
+                            while(triesParagraph.firstChild) {
+                                triesParagraph.removeChild(triesParagraph.firstChild);
+                            }
+
+                            var text = document.createTextNode("You guessed it and won the game! ");
+                            resultParagraph.appendChild(text);
+                            winner = true;
+
+                        } else if (userNumber > randomNumber) {
+
+                            var text = document.createTextNode("Your number is higher than my number... ");
+                            resultParagraph.appendChild(text);
+
+                        } else if (userNumber < randomNumber) {
+
+                            var text = document.createTextNode("Your number is lower than my number... ");
+                            resultParagraph.appendChild(text);
+
+                        }
+
+
+                        if (winner === false) {
+
+                            triesLeft--;
+
+                            triesText = "You have " + triesLeft;
+
+                            if (triesLeft > 1)
+                                triesText += " tries left.";
+                            else if (triesLeft == 1)
+                                triesText += " try left.";
+
+                            triesParagraph.innerHTML = triesText;
+
+                            if (triesLeft === 0) {
+
+                                while(triesParagraph.firstChild) {
+                                    triesParagraph.removeChild(triesParagraph.firstChild);
+                                }
+
+                                var text = document.createTextNode("Game over: you don't have any more tries!");
+                                resultParagraph.appendChild(text);
+
+                            }
+
+                        }
+
+
+                    } else if (triesLeft === 0) {
+
+                        while(triesParagraph.firstChild) {
+                            triesParagraph.removeChild(triesParagraph.firstChild);
+                        }
+
+                        var text = document.createTextNode("Game over: you don't have any more tries!");
+                        resultParagraph.appendChild(text);
+
+                    }
+
+                }
+
+            }
+
+        </script>
+
+    </head>
+
+    <body>
+
+        <input type="text" id="myText" placeholder="Guess my number!" />
+        <br />
+        <button onclick="myButton()">Submit</button>
+
+        <p id="tries">You have 3 tries left.</p>
+        <p id="result"></p>
+ 
+    </body>
+
+</html>
