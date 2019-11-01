@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+    
+        <meta charset="utf-8" />
+
+        <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script defer src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+        <script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+        
+        <link rel="stylesheet" href="../vendor/bootstrap-css/bootstrap-reboot.min.css" />
+        <link rel="stylesheet" href="../vendor/bootstrap-css/bootstrap.min.css" />
+
+        <title>In-Class Assignment</title>
+
+        <style>
+        
+            a {
+                color: #f8f9fa;
+            }
+
+            a:hover {
+                color: #f8f9fa;
+            }
+
+            .active {
+                color: #212529;
+            }
+
+            .active:hover {
+                color: #212529;
+            }
+
+            .automobile-form-card {
+                margin-top: 5em;
+            }
+        
+        </style>
+
+    </head>
+
+    <body>
+
+        <main style="height: 100vh;" class="container-fluid bg-dark">
+
+            <h1 class="display-1 text-light text-center">Automobiles</h1>
+
+            <ul class="nav nav-tabs bg-dark" id="automobileTabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="table-tab" data-toggle="tab" href="#table" role="tab" aria-controls="table" aria-selected="true">Table</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="form-tab" data-toggle="tab" href="#form" role="tab" aria-controls="form" aria-selected="false">Form</a>
+                </li>
+            </ul>
+
+            <div class="tab-content" id="automobileTabsContent">
+                <div class="tab-pane fade show active" id="table" role="tabpanel" aria-labelledby="table-tab"></div>
+                <div class="tab-pane fade text-light" id="form" role="tabpanel" aria-labelledby="form-tab">
+
+                    
+                        <div class="mx-auto automobile-form-card card text-dark bg-light mb-3" style="max-width:24rem;">
+
+                            <div class="card-header">Insert Automobile</div>
+                            <div class="card-body">
+
+                                <form>
+                                    <div class="form-group">
+                                        <label for="inputMake">Make</label>
+                                        <input type="text" class="form-control" id="inputMake" placeholder="Enter automobile make">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputModel">Model</label>
+                                        <input type="text" class="form-control" id="inputModel" placeholder="Enter automobile model">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputYear">Year</label>
+                                        <input type="number" min="1800" step="1" class="form-control" id="inputYear" placeholder="2019">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputKm">KM</label>
+                                        <input type="number" step="0.01" class="form-control" id="inputKm" placeholder="0.00">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputPrice">Price</label>
+                                        <input type="number" step="1" class="form-control" id="inputPrice" placeholder="1000">
+                                    </div>
+                                    <center><button type="submit" class="btn btn-dark">Insert</button></center>
+                                </form>
+
+                            </div>
+
+                        </div>
+                    
+
+                </div>
+            </div>
+
+        </main>
+
+        <script type="text/javascript">
+        
+            var request = new XMLHttpRequest();
+
+            request.open("GET", "auto.xml", true);
+            request.send();
+            
+            request.onreadystatechange = function() {
+            
+                if (this.readyState == 4 && this.status == 200) {
+                    myFunction(this);
+                }
+            
+            };
+
+
+            function myFunction() {
+
+                var xmlDoc = request.responseXML;
+                var automobiles, makes, models, years, kms, prices, table, i;
+                
+                table = "<table class='table table-dark'><thead><tr><th scope='col'>#</th><th scope='col'>Make</th><th scope='col'>Model</th><th scope='col'>Year</th><th scope='col'>KM</th><th scope='col'>Price</th></tr></thead><tbody>"; 
+                
+                automobiles = xmlDoc.getElementsByTagName("automobile");
+                makes = xmlDoc.getElementsByTagName("make");
+                models = xmlDoc.getElementsByTagName("model");
+                years = xmlDoc.getElementsByTagName("year");
+                kms = xmlDoc.getElementsByTagName("km");
+                prices = xmlDoc.getElementsByTagName("price");
+
+                for (i = 0; i < automobiles.length; i++){
+
+                    table += "<tr>"
+                    
+                    table += "<th scope='row'>" + (i + 1) + "</th>";
+                    table += "<td>" + makes[i].childNodes[0].nodeValue + "</td>";
+                    table += "<td>" + models[i].childNodes[0].nodeValue + "</td>";
+                    table += "<td>" + years[i].childNodes[0].nodeValue + "</td>";
+                    table += "<td>" + kms[i].childNodes[0].nodeValue + "</td>";
+                    table += "<td>" + prices[i].childNodes[0].nodeValue + "</td>";
+
+                    table += "</tr>"
+
+                }    
+
+                table += "</tbody></table>"
+                document.getElementById("table").innerHTML = table;
+
+            }
+        
+        </script>
+ 
+    </body>
+
+</html>

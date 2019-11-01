@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<automobiles>
+
+    <automobile>
+
+        <make>Acura</make>
+        <model>Integra Type R</model>
+        <year>2000</year>
+        <km>373.00 km</km>
+        <price>&#36;15000</price>
+
+    </automobile>
+
+    <automobile>
+
+        <make>Mitsubishi</make>
+        <model>Eclipse GSX</model>
+        <year>1999</year>
+        <km>117.00 km</km>
+        <price>&#36;10000</price>
+
+    </automobile>
+
+    <automobile>
+
+        <make>Mitsubishi</make>
+        <model>Lancer ES</model>
+        <year>2003</year>
+        <km>1574.00 km</km>
+        <price>&#36;50000</price>
+
+    </automobile>
+
+    <automobile>
+
+        <make>Nissan</make>
+        <model>350Z</model>
+        <year>2003</year>
+        <km>9999.00 km</km>
+        <price>&#36;1000</price>
+
+    </automobile>
+
+    <automobile>
+
+        <make>Nissan</make>
+        <model>Skyline GT-R (R34)</model>
+        <year>1999</year>
+        <km>8751.00 km</km>
+        <price>&#36;10000</price>
+
+    </automobile>
+
+    <automobile>
+
+        <make>Toyota</make>
+        <model>Supra</model>
+        <year>1998</year>
+        <km>3334.00 km</km>
+        <price>&#36;5000</price>
+
+    </automobile>
+
+    <automobile>
+
+        <make>Subaru</make>
+        <model>Impreza 2.5 RS</model>
+        <year>2003</year>
+        <km>91850.93 km</km>
+        <price>&#36;2000</price>
+
+    </automobile>
+
+    <automobile>
+
+        <make>Dodge</make>
+        <model>Neon</model>
+        <year>1999</year>
+        <km>1245678.00 km</km>
+        <price>&#36;99000</price>
+
+    </automobile>
+
+    <automobile>
+
+        <make>Toyota</make>
+        <model>Celica</model>
+        <year>2002</year>
+        <km>94021.00 km</km>
+        <price>&#36;3500</price>
+
+    </automobile>
+
+    <automobile>
+
+        <make>Peugeot</make>
+        <model>206 S16</model>
+        <year>2003</year>
+        <km>3000.00 km</km>
+        <price>&#36;13000</price>
+
+    </automobile>
+
+    <automobile>
+
+        <make>Mazda</make>
+        <model>Miata MX5</model>
+        <year>1999</year>
+        <km>200.00 km</km>
+        <price>&#36;500</price>
+
+    </automobile>
+
+    <automobile>
+
+        <make>Nissan</make>
+        <model>Sentra SE-R Spec-V</model>
+        <year>2004</year>
+        <km>2300.00 km</km>
+        <price>&#36;5000</price>
+
+    </automobile>
+
+</automobiles>
