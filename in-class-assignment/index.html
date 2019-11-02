@@ -40,9 +40,9 @@
 
     </head>
 
-    <body>
+    <body class="bg-dark">
 
-        <main style="height: 100vh;" class="container-fluid bg-dark">
+        <main style="min-height: 100vh;" class="container-fluid">
 
             <h1 class="display-1 text-light text-center">Automobiles</h1>
 
@@ -65,7 +65,7 @@
                             <div class="card-header">Insert Automobile</div>
                             <div class="card-body">
 
-                                <form>
+                                <form action="#" onsubmit="onInsert(); return false">
                                     <div class="form-group">
                                         <label for="inputMake">Make</label>
                                         <input type="text" class="form-control" id="inputMake" placeholder="Enter automobile make">
@@ -101,26 +101,86 @@
 
         <script type="text/javascript">
         
-            var request = new XMLHttpRequest();
+            var request = readXML();
 
-            request.open("GET", "auto.xml", true);
-            request.send();
-            
             request.onreadystatechange = function() {
-            
+                            
                 if (this.readyState == 4 && this.status == 200) {
-                    myFunction(this);
+                    updateTable(this);
                 }
             
             };
 
-
-            function myFunction() {
+            function onInsert() {
 
                 var xmlDoc = request.responseXML;
+
+                var make = document.getElementById("inputMake").value;
+                var model = document.getElementById("inputModel").value;
+                var year = document.getElementById("inputYear").value;
+                var km = document.getElementById("inputKm").value + " km";
+                var price = "$" + document.getElementById("inputPrice").value;
+
+                var rootElement = xmlDoc.getElementsByTagName("automobiles")[0];
+
+                var newAutomobile = xmlDoc.createElement("automobile");
+                rootElement.appendChild(newAutomobile);
+
+                var automobiles = xmlDoc.getElementsByTagName("automobile");
+                var newElement = automobiles[automobiles.length - 1];
+                
+                var newMake = xmlDoc.createElement("make");
+                newMake.appendChild(xmlDoc.createTextNode(make));
+                newElement.appendChild(newMake);
+
+                var newModel = xmlDoc.createElement("model");
+                newModel.appendChild(xmlDoc.createTextNode(model));
+                newElement.appendChild(newModel);
+
+                var newYear = xmlDoc.createElement("year");
+                newYear.appendChild(xmlDoc.createTextNode(year));
+                newElement.appendChild(newYear);
+
+                var newKm = xmlDoc.createElement("km");
+                newKm.appendChild(xmlDoc.createTextNode(km));
+                newElement.appendChild(newKm);
+
+                var newPrice = xmlDoc.createElement("price");
+                newPrice.appendChild(xmlDoc.createTextNode(price));
+                newElement.appendChild(newPrice);
+
+                updateTable(request);
+
+            }
+
+            function onDelete(automobileId) {
+
+                xmlDoc = request.responseXML;
+
+                automobile = xmlDoc.getElementsByTagName("automobile")[automobileId];
+                automobile.parentNode.removeChild(automobile);
+
+                updateTable(request);
+
+            }
+
+            function readXML() {
+
+                var request = new XMLHttpRequest();
+
+                request.open("GET", "auto.xml", true);
+                request.send();
+                
+                return request;
+
+            }
+
+            function updateTable(xml) {
+
+                var xmlDoc = xml.responseXML;
                 var automobiles, makes, models, years, kms, prices, table, i;
                 
-                table = "<table class='table table-dark'><thead><tr><th scope='col'>#</th><th scope='col'>Make</th><th scope='col'>Model</th><th scope='col'>Year</th><th scope='col'>KM</th><th scope='col'>Price</th></tr></thead><tbody>"; 
+                table = "<table class='table table-dark'><thead><tr><th scope='col'>#</th><th scope='col'>Make</th><th scope='col'>Model</th><th scope='col'>Year</th><th scope='col'>KM</th><th scope='col'>Price</th><th scope='col'></th></tr></thead><tbody>"; 
                 
                 automobiles = xmlDoc.getElementsByTagName("automobile");
                 makes = xmlDoc.getElementsByTagName("make");
@@ -129,7 +189,7 @@
                 kms = xmlDoc.getElementsByTagName("km");
                 prices = xmlDoc.getElementsByTagName("price");
 
-                for (i = 0; i < automobiles.length; i++){
+                for (i = 0; i < automobiles.length; i++) {
 
                     table += "<tr>"
                     
@@ -139,7 +199,8 @@
                     table += "<td>" + years[i].childNodes[0].nodeValue + "</td>";
                     table += "<td>" + kms[i].childNodes[0].nodeValue + "</td>";
                     table += "<td>" + prices[i].childNodes[0].nodeValue + "</td>";
-
+                    
+                    table += "<td><button onclick='onDelete(" + i + ")' type='button' class='btn btn-danger btn-sm'>X</button></td>";
                     table += "</tr>"
 
                 }    
