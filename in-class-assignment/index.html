@@ -55,7 +55,22 @@
                 <div class="tab-pane fade show active" id="tableWrapper" role="tabpanel" aria-labelledby="tableWrapper-tab">
 
                     <div class="input-group mt-3">
-                        <input id="searchBox" type="text" class="form-control" aria-label="Search box text input">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="searchCriteria">Search by</label>
+                        </div>
+
+                        <select class="custom-select" id="searchCriteria">
+                            <option value="make" selected>Make</option>
+                            <option value="model">Model</option>
+                            <option value="year">Year</option>
+                            <option value="km">KM</option>
+                            <option value="price">Price</option>
+                        </select>
+
+                    </div>
+
+                    <div class="input-group mt-3">
+                        <input id="searchBox" type="text" class="form-control" placeholder="Type what you're looking for" aria-label="Search box text input">
                         <div class="input-group-append">
                             <button type="button" class="btn btn-info" onclick="onClickSearch();">Search</button>
                         </div>
@@ -218,46 +233,43 @@
 
             function onClickSearch() {
 
-                searchText = document.getElementById("searchBox").value;
+                var searchText = document.getElementById("searchBox").value;
+                var searchCriteriaElement = document.getElementById("searchCriteria");
 
-                searchTable(request, searchText);
+                var searchCriteria = searchCriteriaElement.options[searchCriteriaElement.selectedIndex].value;
+
+                searchTable(request, searchText, searchCriteria);
 
             }
 
-            function searchTable(xml, searchText) {
+            function searchTable(xml, searchText, searchCriteria) {
 
-                var path = "automobiles/automobile/make[contains(.,'" + searchText + "')]/*";
+                var path = "/automobiles/automobile[" + searchCriteria + "[contains(., '" + searchText + "')]]";
                 var xmlDoc = xml.responseXML;
-                var automobiles, makes, models, years, kms, prices, table, i;
+                var table, i = 1;
 
                 var nodes = xmlDoc.evaluate(path, xmlDoc, null, XPathResult.ANY_TYPE, null);
-                console.log(nodes);
                 var result = nodes.iterateNext();
                 
-                table = "<table class='table table-dark'><thead><tr><th scope='col'>#</th><th scope='col'>Make</th><th scope='col'>Model</th><th scope='col'>Year</th><th scope='col'>KM</th><th scope='col'>Price</th><th scope='col'></th></tr></thead><tbody>"; 
-                
-                automobiles = result.getElementsByTagName("automobile");
-                makes = result.getElementsByTagName("make");
-                models = result.getElementsByTagName("model");
-                years = result.getElementsByTagName("year");
-                kms = result.getElementsByTagName("km");
-                prices = result.getElementsByTagName("price");
+                table = "<table class='table table-dark'><thead><tr><th scope='col'>#</th><th scope='col'>Make</th><th scope='col'>Model</th><th scope='col'>Year</th><th scope='col'>KM</th><th scope='col'>Price</th></tr></thead><tbody>"; 
 
-                for (i = 0; i < automobiles.length; i++) {
+                while(result) {
 
                     table += "<tr>"
-                    
-                    table += "<th scope='row'>" + (i + 1) + "</th>";
-                    table += "<td>" + makes[i].childNodes[0].nodeValue + "</td>";
-                    table += "<td>" + models[i].childNodes[0].nodeValue + "</td>";
-                    table += "<td>" + years[i].childNodes[0].nodeValue + "</td>";
-                    table += "<td>" + kms[i].childNodes[0].nodeValue + "</td>";
-                    table += "<td>" + prices[i].childNodes[0].nodeValue + "</td>";
-                    
-                    table += "<td><button onclick='onDelete(" + i + ")' type='button' class='btn btn-danger btn-sm'>X</button></td>";
+
+                    table += "<th scope='row'>" + i + "</th>";
+                    table += "<td>" + result.children[0].childNodes[0].nodeValue + "</td>";
+                    table += "<td>" + result.children[1].childNodes[0].nodeValue + "</td>";
+                    table += "<td>" + result.children[2].childNodes[0].nodeValue + "</td>";
+                    table += "<td>" + result.children[3].childNodes[0].nodeValue + "</td>";
+                    table += "<td>" + result.children[4].childNodes[0].nodeValue + "</td>";
+
                     table += "</tr>"
 
-                }    
+                    result = nodes.iterateNext();
+                    i++;
+
+                }  
 
                 table += "</tbody></table>"
                 document.getElementById("table").innerHTML = table;
